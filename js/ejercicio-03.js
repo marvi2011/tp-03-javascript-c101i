@@ -2,15 +2,49 @@
 const min = 1;
 const max = 6;
 let resultados = [];
-for (let i = 0; i < 3; i++) {
-  let dado1 = parseInt(alert(`Presione "Aceptar" para tirar el primer dado`));
+for (let i = 0; i < 50; i++) {
+ 
   let random1 = Math.floor(Math.random() * (max - min + 1) + min);
-  let dado2 = parseInt(alert(`Presione "Aceptar" para tirar el segundo dado`));
+  console.log(random1);
   let random2 = Math.floor(Math.random() * (max - min + 1) + min);
-  document.write(`<p>El resultado del primer dado es: ${random1}</p>`);
-  document.write(`<p>El resultado del segundo dado es: ${random2}</p>`);
+  console.log(random2);
+;
   let suma = random1 + random2;
   console.log(suma);
-  document.write(`<p>La suma de ambos dados es: ${suma}</p><br>`);
-  resultados.push(suma);
-}
+
+  resultados.push(suma)};
+  let noDuplicados = resultados.filter(
+    (item, index) => resultados.indexOf(item) === index
+  );
+  console.log(noDuplicados);
+  
+  // contar la cantidad de veces que se repitio una muestra
+  let resultado = [];
+  
+  for (i = 0; i < noDuplicados.length; i++) {
+    let repeticiones = 0;
+    for (j = 0; j < resultados.length; j++) {
+      if (noDuplicados[i] === resultados[j]) repeticiones++;
+    }
+    resultado[i] = repeticiones;
+  }
+  
+  // muestro los resultados
+  document.write(`<table>
+  <thead>
+      <tr>
+          <th>Resultado de la suma de ambos dados</th>
+          <th>Cantidad de veces que salió este resultado</th>
+      </tr>
+  </thead>
+  <tbody>`);
+  for (let i = 0; i < noDuplicados.length; i++) {
+    document.write(`
+      <tr>
+          <td>${noDuplicados[i]} </td>
+          <td>${resultado[i]} </td>
+      </tr>`);
+  }
+  document.write(`
+      </tbody>
+  </table>`);
